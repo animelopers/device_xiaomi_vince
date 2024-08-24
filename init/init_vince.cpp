@@ -111,11 +111,18 @@ void set_model_props() {
 
     string region = GetProperty("ro.boot.hwc", "");
     string model;
-    if (region == "India") {
-        model = "Redmi Note 5";
 
+    if (region == "China") {
+        string carrier = GetProperty("ro.boot.carrier", "");
+        if (carrier == "China Mobile") {
+            model = "Redmi 5 Plus China Mobile (MET7)";
+        } else {
+            model = "Redmi 5 Plus China (MEE7)";
+        }
+    } else if (region == "India") {
+        model = "Redmi Note 5 India (MEI7)";
     } else {
-        model = "Redmi 5 Plus";
+        model = "Redmi 5 Plus Global (MEG7)";
     }
 
     for (const auto& source : ro_props_default_source_order) {
